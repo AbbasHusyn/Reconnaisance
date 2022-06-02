@@ -1,0 +1,70 @@
+echo "____________________________"
+echo
+echo "Welcome to My Reconn Project"
+echo
+echo "____________________________"
+echo
+echo
+echo "Please enter a valid Domain"
+read domain
+echo
+echo
+echo "This Script will perform following tasks as per your desired input"
+echo "1- NSLookup"
+echo "2- Whois and dig"
+echo "3- Sublister"
+echo "4- NMAP"
+echo "5- The Harvester"
+echo
+read num
+#I have used dawlance.com.pk
+echo
+case $num in 
+1) echo "You have selected NSLookup";;
+2) echo "You have selected Whois and dig";;
+3) echo "You have selected Sublisted";;
+4) echo "You have selected NMAP";;
+5) echo "You have selected The Harvester";;
+esac
+echo
+if [ $num -eq 1 ]; then
+echo "xxxxxxxxxxxxxxxxxxxxxxx"
+echo
+echo "The output of NSLookup is below"
+nslookup $domain >> MidRes.txt
+echo
+elif [ $num -eq 2 ]; then
+echo "xxxxxxxxxxxxxxxxxxxxxxxx"
+echo
+echo
+echo "The output of Whois is below"
+whois $domain >> MidRes.txt
+echo
+echo
+echo "xxxxxxxxxxxxxxxxxxxxxxxx"
+echo
+echo "The output of Dig is below"
+dig $domain +short >> MidRes.txt
+echo
+echo
+elif [ $num -eq 3 ]; then
+echo "xxxxxxxxxxxxxxxxxxxxxxxxx"
+echo
+echo
+sublist3r -d $domain >> MidRes.txt
+echo
+echo
+elif [ $num -eq 4 ]; then
+echo "xxxxxxxxxxxxxxxxxxxxxxxx"
+echo
+echo "The output of Open Ports are below"
+nmap $domain >> MidRes.txt
+echo
+echo
+elif [ $num -eq 5 ]; then
+echo
+echo "The Output of Public Emails are below"
+theHarvester -d $domain -l 500 -b google >> MidRes.txt
+echo
+echo
+fi
